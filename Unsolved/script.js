@@ -1,5 +1,4 @@
-// Assignment Code
-console.log("hey");
+// Initialize variables
 var generateBtn = document.querySelector("#generate");
 var criteriaArray = [];
 var lowerCaseArray=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
@@ -9,6 +8,7 @@ var specialCharArray=["!","@","#","$","%","^","&","*","(",")","{","}","|","[","]
 var passwordString="";
 var passwordCriteria = null;
 
+// Validates User inputs and enforces reentry
 function validateUserInputs(){
   while (passwordCriteria.hasSpecialChar == false && passwordCriteria.hasUpperCaseChar == false && passwordCriteria.hasLowerCaseChar == false && passwordCriteria.hasNumberChar == false) {
     alert("Please select one type of character");
@@ -18,7 +18,7 @@ function validateUserInputs(){
     passwordCriteria.hasSpecialChar=confirm("Do you want to include special characters?");
   }
 }
-
+//Captures Password criteria from user
 function getPasswordCriteria(){
 
   var hasLowerCase=confirm("Do you want to include lowercase characters?");
@@ -26,7 +26,7 @@ function getPasswordCriteria(){
   var hasNumeric=confirm("Do you want to include numeric characters?");
   var hasSpecial=confirm("Do you want to include special characters?");
   var length = parseInt(prompt("How many characters do you want the password to be?"));
-
+//stores all criteria into an object
  passwordCriteria = {
   length: parseInt(length),
   hasSpecialChar: hasSpecial,
@@ -39,8 +39,9 @@ return passwordCriteria;
 }
 
 
-
+//Generates passoword 
 function generatePassword(){
+  //Based on the provided user inputs build a criteria array which is a collection of arrays.
  var passwordCriteria =  getPasswordCriteria();
  if (passwordCriteria.hasLowerCaseChar==true){
   criteriaArray.push(lowerCaseArray);
@@ -54,6 +55,7 @@ if (passwordCriteria.hasNumberChar==true){
 if (passwordCriteria.hasSpecialChar==true){
   criteriaArray.push(specialCharArray)
 }
+//Loop through the provided length and randomly select elements from each array within the main array
 for(let i=0;i<passwordCriteria.length;i++){
 randomSelectedCriteriaArrayIndex = parseInt(Math.floor(Math.random()*criteriaArray.length));
 randomSelectedCriteriaArrayGroup = criteriaArray[randomSelectedCriteriaArrayIndex];
@@ -65,9 +67,11 @@ passwordString += randomSelectedElement;
 
 // Write password to the #password input
 function writePassword() {
+  //invoke the function to generate password
   generatePassword();
   var passwordText = document.querySelector("#password");
   console.log(passwordString)
+  //set the value back to the html tag for password
   passwordText.value = passwordString;
 
 }
