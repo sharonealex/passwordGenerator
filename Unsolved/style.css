@@ -11,7 +11,7 @@ body,
   margin: 0;
   padding: 0;
 }
-
+/*Style*/
 body {
   font-family: sans-serif;
   background-color: #f9fbfd;
@@ -117,7 +117,7 @@ button[disabled] {
   resize: none;
   overflow: hidden;
 }
-
+/*Style for responsive layout.*/
 @media (max-width: 690px) {
   .btn {
     font-size: 1rem;
