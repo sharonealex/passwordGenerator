@@ -96,10 +96,10 @@ var getUserInputs = function(){
         alert ("entered length is either invalid number or less that 8")
         return;    // break out of the program flow. And user has to start the process again.
     }
-    var hasSpecialChars = prompt("should there be special chars?", "yes");
-    var hasLowerChars = prompt("should there be lower chars?", "yes");
-    var hasUpperChars = prompt("should there be upper chars?", "yes");
-    var hasNumbers = prompt("should there be numbers?", "yes");
+    var hasSpecialChars = confirm("should there be special chars?");
+    var hasLowerChars = confirm("should there be lower chars?");
+    var hasUpperChars = confirm("should there be upper chars?");
+    var hasNumbers = confirm("should there be numbers?");
     return {
         length: length,
         hasLowerChars: hasLowerChars,
