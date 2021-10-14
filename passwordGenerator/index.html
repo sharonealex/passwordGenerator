@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+  
+</head>
+<body>
+    <header>
+        <h1>Password generator</h1>
+    </header>
+    <div id="card">
+        <div id="card-header">
+            Generate a password
+        </div>
+        <div id="card-body">
+            <textarea readonly id="password-text" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
+        </div>
+        <div id="card-footer">
+            <button id="button" value="click me">Click Me</button>
+        </div>
+    </div>
+    <script src="script.js"></script>  <!--place it here to wait for the dom to load, else the query selectors
+    return null-->
+</body>
+
+</html>
