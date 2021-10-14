@@ -92,14 +92,20 @@ var specialCharacters = [
 
 var getUserInputs = function(){
     var length = parseInt(prompt("please enter the length of the password", "8"));
-    if(length < 8 || Number.isNaN(length)){
-        alert ("entered length is either invalid number or less that 8")
+    if(length < 8 || Number.isNaN(length) || length > 128){
+        alert ("entered length is either invalid number or less that 8 or greater than 128")
         return;    // break out of the program flow. And user has to start the process again.
     }
+
+    
     var hasSpecialChars = confirm("should there be special chars?");
     var hasLowerChars = confirm("should there be lower chars?");
     var hasUpperChars = confirm("should there be upper chars?");
     var hasNumbers = confirm("should there be numbers?");
+    if(hasLowerChars === false && hasNumbers === false && hasUpperChars === false && hasSpecialChars === false){
+        alert ("Must enter atleast one type of characters");
+        return
+    }
     return {
         length: length,
         hasLowerChars: hasLowerChars,
@@ -109,6 +115,9 @@ var getUserInputs = function(){
     }
 }
 
+var getRandom = function(arr){
+    return Math.floor(Math.random() * arr.length)
+}
 
 var generatePassword = function(){
 var passwordText = '';
@@ -119,8 +128,8 @@ if (userInputs.hasNumbers) selectedTypesArray.push(numericCharacters);
 if (userInputs.hasUpperChars) selectedTypesArray.push(upperCasedCharacters);
 if (userInputs.hasSpecialChars) selectedTypesArray.push(specialCharacters)
 for(var i = 0; i < userInputs.length; i ++){
-var randomArrayIndex = Math.floor(Math.random() * selectedTypesArray.length);
-var randomElementIndex = Math.floor(Math.random() * selectedTypesArray[randomArrayIndex].length)
+var randomArrayIndex = getRandom(getRandom);
+var randomElementIndex =  getRandom(selectedTypesArray[randomArrayIndex])
 passwordText += selectedTypesArray[randomArrayIndex][randomElementIndex];
 }
 
