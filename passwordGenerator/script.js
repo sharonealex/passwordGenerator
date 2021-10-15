@@ -116,24 +116,42 @@ var getUserInputs = function(){
 }
 
 var getRandom = function(arr){
-    return Math.floor(Math.random() * arr.length)
+    var randomIndex =  Math.floor(Math.random() * arr.length)
+    return arr[randomIndex];
 }
 
 var generatePassword = function(){
 var passwordText = '';
+var res = []
+var validCharaters = [];
+var guarenteedCharacters = [];
 var userInputs = getUserInputs(); 
-var selectedTypesArray = [];
-if (userInputs.hasLowerChars) selectedTypesArray.push(lowerCasedCharacters);
-if (userInputs.hasNumbers) selectedTypesArray.push(numericCharacters);
-if (userInputs.hasUpperChars) selectedTypesArray.push(upperCasedCharacters);
-if (userInputs.hasSpecialChars) selectedTypesArray.push(specialCharacters)
+
+if (userInputs.hasLowerChars) {
+    validCharaters =  validCharaters.concat(lowerCasedCharacters);
+    guarenteedCharacters.push(getRandom(lowerCasedCharacters));
+}
+if (userInputs.hasNumbers) {
+    validCharaters = validCharaters.concat(numericCharacters);
+    guarenteedCharacters.push(getRandom(numericCharacters));
+}
+if (userInputs.hasUpperChars) {
+    validCharaters = validCharaters.concat(upperCasedCharacters);
+    guarenteedCharacters.push(getRandom(upperCasedCharacters));
+}
+if (userInputs.hasSpecialChars) {
+    validCharaters = validCharaters.concat(upperCasedCharacters);
+    guarenteedCharacters.push(getRandom(specialCharacters))
+}
 for(var i = 0; i < userInputs.length; i ++){
-var randomArrayIndex = getRandom(getRandom);
-var randomElementIndex =  getRandom(selectedTypesArray[randomArrayIndex])
-passwordText += selectedTypesArray[randomArrayIndex][randomElementIndex];
+res.push(getRandom(validCharaters));
 }
 
-return passwordText;
+for(var i = 0; i < guarenteedCharacters.length; i ++){
+    res[i] = guarenteedCharacters[i];
+}
+
+return res.join('');
 }
 
 var writePassword = function(){
